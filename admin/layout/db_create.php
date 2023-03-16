@@ -1,6 +1,19 @@
 <?php 
 require("./db.php");
 
+$sql = "CREATE TABLE program (
+    id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    program VARCHAR(500) NOT NULL,
+    sheet VARCHAR(500) NOT NULL,
+    reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+)";
+
+if ($conn->query($sql) === TRUE) {
+    echo "Table Program created successfully<br>";
+} else {
+    echo "Error creating table: ";
+}
+
 // 
 $sql = "CREATE TABLE student (
     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,

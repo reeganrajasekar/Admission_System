@@ -24,6 +24,10 @@
 					<li class="nav-item">
                         <a class="nav-link <?php if($_SERVER['PHP_SELF'] == '/admin/home.php'){ echo 'active'; } ?>" aria-current="page" href="/admin/home.php">Home</a>
                     </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link <?php if($_SERVER['PHP_SELF'] == '/admin/program.php'){ echo 'active'; } ?>" aria-current="page" href="/admin/program.php">Program</a>
+                    </li>
                     
                     <li class="nav-item">
                         <a class="nav-link" onclick="return confirm('Do you want to Logout?')" href="/admin/logout.php">Logout</a>

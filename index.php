@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Signup</title>
+    <title>Staff Login</title>
     <link rel="stylesheet" href="/static/css/bootstrap.min.css">
     <link rel="shortcut icon" href="/static/img/logo.png">
     <style>
@@ -20,72 +20,31 @@
         </div>
     </div>
 
-    <section class="gradient-custom py-5">
-        <div class="container py-1">
-            <div class="row d-flex justify-content-center align-items-center">
-                <div class="col-12 col-md-12 col-lg-8 col-xl-7">
-                    <div class="card" style="border-radius: 1rem;background-color:#f5f5f5;">
-                        <form onsubmit="document.getElementById('loader').style.display='block'" action="/register.php" method="POST" class="card-body p-4 text-center" enctype="multipart/form-data">
-                            <h2 class="fw-bold mb-4 text-uppercase text-primary" style="font-weight:800">Admission Form</h2>
-                            
-                            <div class="form-floating mb-3">
-                                <input required type="text" name="name" class="form-control" id="floatingInput" placeholder="Name of the Student">
-                                <label for="floatingInput">Name of the Student</label>
-                            </div>
+    <section class="gradient-custom h-100">
+        <div class="container py-1 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                    <div class="card" style="border-radius: 1rem;background-color:#f9f9f9;">
+                        <form onsubmit="document.getElementById('loader').style.display='block'" action="/form.php" method="POST" class="card-body p-4 text-center">
+                            <h2 class="fw-bold mb-4 text-uppercase" style="font-weight:800;color:tomato">Admission Form</h2>
+                            <select class="form-select mb-3" name="course" aria-label=".form-select-sm example" required>
+                                <option selected disabled value="">Select Course</option>
+                                <?php
+                                    require("./admin/layout/db.php");
+                                    $result = $conn->query("SELECT * FROM program WHERE sheet>0 ORDER BY id DESC");
+                                    if($result->num_rows > 0){
+                                        while($row = $result->fetch_assoc()){
+                                ?>
+                                <option value="<?php echo($row["program"]) ?>"><?php echo($row["program"]) ?></option>
+                                <?php
+                                        }
+                                    }else{
+                                ?>
+                                    <option disabled>There is No Available Sheets</option>
+                                <?php } ?>
+                            </select><br>
 
-                            <div class="form-floating mb-3">
-                                <input required type="text" name="fname" class="form-control" id="floatingInput" placeholder="Father Name">
-                                <label for="floatingInput">Father Name</label>
-                            </div>
-
-                            <div class="form-floating mb-3">
-                                <input required type="text" name="mname" class="form-control" id="floatingInput" placeholder="Mother Name">
-                                <label for="floatingInput">Mother Name</label>
-                            </div>
-
-                            <div class="form-floating mb-3">
-                                <input required type="number" name="mobile" class="form-control" id="floatingInput" placeholder="Mobile No">
-                                <label for="floatingInput">Mobile No</label>
-                            </div>
-
-                            <div class="form-floating mb-3">
-                                <input required type="email" name="email" class="form-control" id="floatingInput" placeholder="Email">
-                                <label for="floatingInput">Email</label>
-                            </div>
-
-                            <div class="form-floating mb-3">
-                                <input required type="text" name="address" class="form-control" id="floatingInput" placeholder="Address">
-                                <label for="floatingInput">Address</label>
-                            </div>
-
-                            <div class="form-floating mb-3">
-                                <input required type="text" name="sname" class="form-control" id="floatingInput" placeholder="School Name / College Name">
-                                <label for="floatingInput">School Name / College Name</label>
-                            </div>
-
-                            <select class="form-select mb-3" name="com" aria-label=".form-select-sm example">
-                                <option selected>Course Completed</option>
-                                <option value="+2 (Maths, Biology)">+2 (Maths, Biology)</option>
-                                <option value="+2 (Maths, Computer Science)">+2 (Maths, Computer Science)</option>
-                            </select>
-
-                            <select class="form-select mb-3" name="course" aria-label=".form-select-sm example">
-                                <option selected>Course Interested</option>
-                                <option value="B.Sc (Computer Science)">B.Sc (Computer Science)</option>
-                            </select>
-
-                            <div class="form-floating mb-3">
-                                <input required type="file" name="img" class="form-control" id="floatingInput" placeholder="Photo">
-                                <label for="floatingInput">Photo</label>
-                            </div>
-
-                            <div class="form-floating mb-5">
-                                <input required type="file" name="sign" class="form-control" id="floatingInput" placeholder="Sign">
-                                <label for="floatingInput">Sign</label>
-                            </div>
-
-                            <button class="btn btn-primary btn-lg px-5 mb-2" type="submit">Register</button>
-                            
+                            <button class="btn btn-lg px-5 mb-2"  style="background-color: tomato;color:white;" type="submit">Next</button>
                         </div>
                     </div>
                 </div>
@@ -94,9 +53,11 @@
     </section>
     
     <style>
-        .gradient-custom {
-            background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
-            background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
+        body{
+            background-image: url("./static/bg.jpg");
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: cover;
         }
     </style>
     <script>

@@ -6,58 +6,70 @@
         <h2 style="color:#2b74e2;font-weight:600">Students List</h2>
     </div>
     <br>  
-    <div class="table-responsive">        
-    <table class="table table-striped table-bordered">
-        <thead style="text-align:center">
-            <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>Father Name</th>
-                <th>Mother Name</th>
-                <th>Mobile</th>
-                <th>Email</th>
-                <th>Address</th>
-                <th>Course Wanted</th>
-                <th>Cource Completed</th>
-                <th>Image</th>
-                <th>Sign</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            $result = $conn->query("SELECT * FROM student ORDER BY id DESC");
-            if($result->num_rows > 0){
-                $i=0;
-                while($row = $result->fetch_assoc()){
-                    $i++;
-                    ?>
-                        <tr>
-                            <td style="text-align:center"><?php echo($i) ?></td>
-                            <td><?php echo($row["name"]) ?></td>
-                            <td><?php echo($row["fname"]) ?></td>
-                            <td><?php echo($row["mname"]) ?></td>
-                            <td><?php echo($row["mobile"]) ?></td>
-                            <td><?php echo($row["email"]) ?></td>
-                            <td><?php echo($row["address"]) ?></td>
-                            <td><?php echo($row["com"]) ?></td>
-                            <td><?php echo($row["course"]) ?></td>
-                            <td><img src="/uploads/<?php echo($row["img"]) ?>" width="150px" alt=""></td>
-                            <td><img src="/uploads/<?php echo($row["sign"]) ?>" width="150px" alt=""></td>
-                        </tr>
-                    <?php
+    <div class="accordion" id="accordionExample">
+        <?php
+        $result = $conn->query("SELECT * FROM student ORDER BY id DESC");
+        if($result->num_rows > 0){
+            $i=0;
+            while($row = $result->fetch_assoc()){
+                $i++;
+                ?>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="heading<?php echo($row["id"])?>">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<?php echo($row["id"])?>" aria-expanded="false" aria-controls="collapse<?php echo($row["id"])?>">
+                    <?php echo($i) ?> . <?php echo($row["name"])?>
+                    </button>
+                    </h2>
+                    <div id="collapse<?php echo($row["id"])?>" class="accordion-collapse collapse" aria-labelledby="heading<?php echo($row["id"])?>" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <div class="row">
+                            <div class="col-6">
+                                Name : <?php echo($row["name"]) ?>
+                            </div>
+                            <div class="col-6">
+                                Course : <?php echo($row["course"]) ?>
+                            </div>
+                            <div class="col-6">
+                                Father Name : <?php echo($row["fname"]) ?>
+                            </div>
+                            <div class="col-6">
+                                Mother Name : <?php echo($row["mname"]) ?>
+                            </div>
+                            <div class="col-6">
+                                Mobile : <?php echo($row["mobile"]) ?>
+                            </div>
+                            <div class="col-6">
+                                Email : <?php echo($row["email"]) ?>
+                            </div>
+                            <div class="col-6">
+                                Address : <?php echo($row["address"]) ?>
+                            </div>
+                            <div class="col-6">
+                                Completed Course : <?php echo($row["com"]) ?>
+                            </div>
+                            <div class="col-6">
+                                Profile : <br>
+                                <img src="/uploads/<?php echo($row["img"]) ?>" width="150px" alt="">
+                            </div>
+                            <div class="col-6">
+                                Sign : <br>
+                                <img src="/uploads/<?php echo($row["sign"]) ?>" width="150px" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <?php
                 }
             }else{
             ?>
-            <tr>
-                <td style="text-align:center" colspan="10">Nothing Found</td>
-            </tr>
-            <?php
-            }
-            ?>
-        </tbody>
-    </table>
+        <p style="text-align:center" colspan="10">Nothing Found</p>
+        <?php
+        }
+        ?>
+        
     </div>
-    <br>
+
 </div>
 
 
