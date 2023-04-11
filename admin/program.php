@@ -30,6 +30,14 @@
                         <input required type="number" class="form-control"  name="sheet" placeholder="Class">
                         <label >Sheets Available</label>
                     </div>
+                    <div class="form-floating mb-3 ">
+                        <input required type="number" class="form-control"  name="fees" placeholder="Class">
+                        <label>Fees</label>
+                    </div>
+                    <div class="form-floating mb-3 ">
+                        <input required type="number" class="form-control"  name="mark" placeholder="Class">
+                        <label>+12 Mark (Min)</label>
+                    </div>
                     <div style="display:flex;justify-content:flex-end">
                         <button class="btn mt-3 w-25" style="background-color:#2b74e2;color:#fff">Add</button>
                     </div>
@@ -47,6 +55,8 @@
                 <th>#</th>
                 <th>Program Name</th>
                 <th>Sheets Available</th>
+                <th>Fees</th>
+                <th>Mark</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -62,6 +72,8 @@
                             <td style="text-align:center"><?php echo($i) ?></td>
                             <td><?php echo($row["program"]) ?></td>
                             <td><?php echo($row["sheet"]) ?></td>
+                            <td><?php echo($row["fees"]) ?></td>
+                            <td><?php echo($row["mark"]) ?></td>
                             <td style="text-align:center">
                                 <form action="/admin/delete.php" method="post">
                                     <input type="hidden" name="id" value="<?php echo($row["id"]) ?>">
@@ -74,7 +86,7 @@
             }else{
             ?>
             <tr>
-                <td style="text-align:center" colspan="5">Nothing Found</td>
+                <td style="text-align:center" colspan="6">Nothing Found</td>
             </tr>
             <?php
             }

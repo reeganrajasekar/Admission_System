@@ -25,29 +25,11 @@
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-12 col-md-8 col-lg-6 col-xl-5">
                     <div class="card" style="border-radius: 1rem;background-color:#f9f9f9;">
-                        <form onsubmit="document.getElementById('loader').style.display='block'" action="/payment.php" method="POST" class="card-body p-4 text-center">
+                        <form onsubmit="document.getElementById('loader').style.display='block'" action="/form.php" method="POST" class="card-body p-4 text-center">
                             <h2 class="fw-bold mb-4 text-uppercase" style="font-weight:800;color:tomato">Admission Form</h2>
-                            <select class="form-select mb-3" name="course" aria-label=".form-select-sm example" required>
-                                <option selected disabled value="">Select Course</option>
-                                <?php
-                                    require("./admin/layout/db.php");
-                                    $result = $conn->query("SELECT * FROM program WHERE sheet>0 ORDER BY id DESC");
-                                    if($result->num_rows > 0){
-                                        while($row = $result->fetch_assoc()){
-                                ?>
-                                <option value="<?php echo($row["program"]) ?>"><?php echo($row["program"]) ?></option>
-                                <?php
-                                        }
-                                    }else{
-                                ?>
-                                    <option disabled>There is No Available Sheets</option>
-                                <?php } ?>
-                            </select>
-                            <div class="form-floating mb-3">
-                                <input required type="number" name="mark" class="form-control" id="floatingInput" placeholder="Mark">
-                                <label for="floatingInput">+12 / Previous Degree Mark</label>
-                            </div><br>
-
+                            <input type="hidden" name="course" value="<?php echo($_POST['course']) ?>">
+                            
+                            <h5 class="text-success">Payment Received Successfully!</h5><br>
                             <button class="btn btn-lg px-5 mb-2"  style="background-color: tomato;color:white;" type="submit">Next</button>
                         </div>
                     </div>

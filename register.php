@@ -23,6 +23,8 @@ if(move_uploaded_file($_FILES["img"]["tmp_name"], $target_file)){
     if(move_uploaded_file($_FILES["sign"]["tmp_name"], $target_file_sign)){
         $sql="INSERT INTO student(name,fname,mname,email,address,mobile,sname,com,course,img,sign) VALUE('$name','$fname','$mname','$email','$address','$mobile','$sname','$com','$course','$img','$sign')";
         $conn->query($sql);
+        $sql="UPDATE program SET sheet=sheet-1 WHERE program='".$course."'";
+        $conn->query($sql);
         header("Location: /?msg=Your Details Stored Successfully! We will Contact You, Thank you");
         die();
     }else{
